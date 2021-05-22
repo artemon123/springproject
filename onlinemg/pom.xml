@@ -6,7 +6,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.4.5</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath/> <!--docker build -f Dockerfile -t onlinemg . -->
 	</parent>
 	<groupId>com.filemanager</groupId>
 	<artifactId>onlinemg</artifactId>
@@ -95,6 +95,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
+		<finalName>docker-onlinemg</finalName>
 	</build>
 
 </project>
