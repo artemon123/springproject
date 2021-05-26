@@ -1,0 +1,32 @@
+version: '3'
+
+
+
+services:
+  user:
+    image: "onlinemg"
+    container_name: onlinemg
+    ports:
+      - "8080:8080"
+    tty: true
+    logging:
+      options:
+        max-file: "2"
+        max-size: "10m"
+    depends_on:
+      - db_user
+
+
+  db_user:
+    image: mysql
+    container_name: db_user
+    restart: always
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_DATABASE: db-user
+      MYSQL_USER: user
+      MYSQL_PASSWORD: welcome01
+      MYSQL_ROOT_PASSWORD: welcome01
+      MYSQL_ALLOW_EMPTY_PASSWORD: 123
+      MYSQL_RANDOM_ROOT_PASSWORD: 'welcome01'
