@@ -1,32 +1,39 @@
-version: '3'
-
-
+version: '3.2'
 
 services:
   user:
     image: "onlinemg"
     container_name: onlinemg
+    restart: "no"
     ports:
-      - "8080:8080"
+      - 8080:8080
     tty: true
     logging:
       options:
         max-file: "2"
         max-size: "10m"
     depends_on:
-      - db_user
+      - db
+    build:
+      context: .
+      dockerfile: "Dockerfile"
 
 
-  db_user:
-    image: mysql
-    container_name: db_user
-    restart: always
-    ports:
-      - "3307:3306"
+
+  db:
+    image: postgres
+    container_name: db
     environment:
-      MYSQL_DATABASE: db-user
-      MYSQL_USER: user
-      MYSQL_PASSWORD: welcome01
-      MYSQL_ROOT_PASSWORD: welcome01
-      MYSQL_ALLOW_EMPTY_PASSWORD: 123
-      MYSQL_RANDOM_ROOT_PASSWORD: 'welcome01'
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_MULTIPLE_DATABASES: userdb, productdb
+    ports:
+      - 5432:5432
+    volumes:
+      - ./init:/docker-entrypoint-initdb.d
+    restart: unless-stopped
+    logging:
+      options:
+        max-file: "2"
+        max-size: "10m"
+
