@@ -3,35 +3,32 @@ package com.filemanager.onlinemg.domain;
 
 import javax.persistence.*;
 
+import lombok.Data;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "usr")
+@Data
 public class User {
-
     @Id
-    //  @GeneratedValue(strategy = GenerationType.AUTO)
-    private String Id;
-
+    private String id;
     private String name;
     private String userpic;
-
-    // private String Password;
-
     private String email;
+    private String gender;
+    private String locale;
+    private LocalDateTime lastVisit;
 
     public String getId() {
-        return Id;
+        return id;
     }
 
     public void setId(String id) {
-        Id = id;
-    }
-
-    public String getUserpic() {
-        return userpic;
-    }
-
-    public void setUserpic(String userpic) {
-        this.userpic = userpic;
+        this.id = id;
     }
 
     public String getName() {
@@ -42,13 +39,13 @@ public class User {
         this.name = name;
     }
 
-//    public String getPassword() {
-    //      return Password;
-    //   }
+    public String getUserpic() {
+        return userpic;
+    }
 
-    //   public void setPassword(String password) {
-    //      Password = password;
-    //  }
+    public void setUserpic(String userpic) {
+        this.userpic = userpic;
+    }
 
     public String getEmail() {
         return email;
@@ -56,5 +53,29 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getLocale() {
+        return locale;
+    }
+
+    public void setLocale(String locale) {
+        this.locale = locale;
+    }
+
+    public LocalDateTime getLastVisit() {
+        return lastVisit;
+    }
+
+    public void setLastVisit(LocalDateTime lastVisit) {
+        this.lastVisit = lastVisit;
     }
 }
